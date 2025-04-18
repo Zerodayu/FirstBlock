@@ -10,6 +10,12 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.firstblock.databinding.ActivityMainBinding;
+import androidx.fragment.app.Fragment;
+
+
+
+
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
@@ -22,30 +28,21 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new HomeFragment());
 
         binding.bottomNavView.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.home:
-                    replaceFragment(new HomeFragment());
-                    break;
-
-                case R.id.settings:
-                    replaceFragment(new SettingFragment());
-                    break;
-
-                case R.id.console:
-                    replaceFragment(new ConsoleFragment());
-                    break;
-
-                case R.id.device:
-                    replaceFragment(new DeviceFragment());
-                    break;
-
-                case R.id.info:
-                    replaceFragment(new InfoFragment());
-                    break;
+            int itemId = item.getItemId();
+            if (itemId == R.id.home) { // Use the IDs from your menu XML
+                replaceFragment(new HomeFragment());
+            } else if (itemId == R.id.settings) {
+                replaceFragment(new SettingFragment());
+            } else if (itemId == R.id.console) {
+                replaceFragment(new ConsoleFragment());
+            } else if (itemId == R.id.device) {
+                replaceFragment(new DeviceFragment());
+            } else if (itemId == R.id.info) {
+                replaceFragment(new InfoFragment());
             }
-
             return true;
         });
+
 
     }
 
