@@ -1,5 +1,9 @@
 package com.example.firstblock;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,58 +11,102 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DeviceFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.io.File;
+
 public class DeviceFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public DeviceFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DeviceFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DeviceFragment newInstance(String param1, String param2) {
-        DeviceFragment fragment = new DeviceFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_device, container, false);
+        View view = inflater.inflate(R.layout.fragment_device, container, false);
+
+        // Find the TextViews
+        TextView deviceNameTextView = view.findViewById(R.id.srcName);
+        TextView processorTextView = view.findViewById(R.id.srcProc);
+        TextView storageTextView = view.findViewById(R.id.srcStorage);
+        TextView networkStatusTextView = view.findViewById(R.id.srcNetwork); // New TextView
+
+        // Get device info
+        String deviceName = Build.DEVICE;
+        String processor = Build.HARDWARE;
+
+        // Set values
+        deviceNameTextView.setText(deviceName);
+        processorTextView.setText(processor);
+
+        // Calculate and display app storage usage
+        long appSizeBytes = getDirSize(requireContext().getFilesDir());
+        String formattedSize = formatSize(appSizeBytes);
+        storageTextView.setText(formattedSize);
+
+        // Get and display network status
+        String networkStatus = getNetworkStatus(requireContext());
+        networkStatusTextView.setText(networkStatus);
+
+        return view;
+    }
+
+    private long getDirSize(File dir) {
+        long size = 0;
+        if (dir != null && dir.isDirectory()) {
+            File[] files = dir.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isFile()) {
+                        size += file.length();
+                    } else {
+                        size += getDirSize(file);
+                    }
+                }
+            }
+        }
+        return size;
+    }
+
+    private String formatSize(long sizeInBytes) {
+        double size = sizeInBytes;
+        if (size >= 1_073_741_824) {
+            return String.format("%.2f GB", size / 1_073_741_824);
+        } else if (size >= 1_048_576) {
+            return String.format("%.2f MB", size / 1_048_576);
+        } else {
+            return String.format("%.2f KB", size / 1024);
+        }
+    }
+
+    private String getNetworkStatus(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm == null) return "Unknown";
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            NetworkCapabilities capabilities = cm.getNetworkCapabilities(cm.getActiveNetwork());
+            if (capabilities != null) {
+                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    return "Connected (Wi-Fi)";
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                    return "Connected (Mobile Data)";
+                } else {
+                    return "Connected (Other)";
+                }
+            } else {
+                return "Offline";
+            }
+        } else {
+            android.net.NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+            if (activeNetwork != null && activeNetwork.isConnected()) {
+                if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                    return "Connected (Wi-Fi)";
+                } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                    return "Connected (Mobile Data)";
+                } else {
+                    return "Connected (Other)";
+                }
+            } else {
+                return "Offline";
+            }
+        }
     }
 }
