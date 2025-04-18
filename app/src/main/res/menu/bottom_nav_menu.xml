@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Home"
-        android:icon="@drawable/home_icon"
-        android:id="@+id/home"/>
+    <item android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/home_icon"/>
 
-    <item android:title="Settings"
-        android:icon="@drawable/setting_icon"
-        android:id="@+id/settings"/>
+    <item android:id="@+id/settings"
+        android:title="Settings"
+        android:icon="@drawable/setting_icon"/>
 
-    <item android:title="Console"
-        android:icon="@drawable/console_icon"
-        android:id="@+id/console"/>
+    <item android:id="@+id/console"
+        android:title="Console"
+        android:icon="@drawable/console_icon"/>
 
-    <item android:title="Device"
-        android:icon="@drawable/device_icon"
-        android:id="@+id/device"/>
+    <item android:id="@+id/device"
+        android:title="Device"
+        android:icon="@drawable/device_icon"/>
 
-    <item android:title="About us"
-        android:icon="@drawable/info_icon"
-        android:id="@+id/info"/>
+    <item android:id="@+id/info"
+        android:title="About us"
+        android:icon="@drawable/info_icon"/>
 
 </menu>
