@@ -1,52 +1,89 @@
 package com.example.firstblock;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.File;
 
 public class DeviceFragment extends Fragment {
 
+    private TextView deviceNameTextView, processorTextView, storageTextView, networkStatusTextView, ramTextView;
+    private ProgressBar ramProgressBar;
+
+    private final Handler handler = new Handler();
+    private final int updateInterval = 3000; // Update every 3 seconds
+
+    private final Runnable updateRunnable = this::updateDeviceInfo;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_device, container, false);
 
         // Find the TextViews
-        TextView deviceNameTextView = view.findViewById(R.id.srcName);
-        TextView processorTextView = view.findViewById(R.id.srcProc);
-        TextView storageTextView = view.findViewById(R.id.srcStorage);
-        TextView networkStatusTextView = view.findViewById(R.id.srcNetwork); // New TextView
+        deviceNameTextView = view.findViewById(R.id.srcName);
+        processorTextView = view.findViewById(R.id.srcProc);
+        storageTextView = view.findViewById(R.id.srcStorage);
+        networkStatusTextView = view.findViewById(R.id.srcNetwork);
+        ramTextView = view.findViewById(R.id.srcRam);
+        ramProgressBar = view.findViewById(R.id.RamProgressBar);
 
-        // Get device info
+        // Set static values
         String deviceName = Build.DEVICE;
         String processor = Build.HARDWARE;
-
-        // Set values
         deviceNameTextView.setText(deviceName);
         processorTextView.setText(processor);
 
-        // Calculate and display app storage usage
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        handler.post(updateRunnable); // Start periodic updates
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        handler.removeCallbacks(updateRunnable); // Stop updates
+    }
+
+    private void updateDeviceInfo() {
+        if (getContext() == null) return;
+
+        // Update storage
         long appSizeBytes = getDirSize(requireContext().getFilesDir());
         String formattedSize = formatSize(appSizeBytes);
         storageTextView.setText(formattedSize);
 
-        // Get and display network status
+        // Update network status
         String networkStatus = getNetworkStatus(requireContext());
         networkStatusTextView.setText(networkStatus);
 
-        return view;
+        // Update RAM usage text
+        String ramInfo = getRAMInfo(requireContext());
+        ramTextView.setText(ramInfo);
+
+        // Update RAM progress bar
+        int ramUsagePercent = getRAMUsagePercent(requireContext());
+        ramProgressBar.setProgress(ramUsagePercent);
+
+        // Schedule next update
+        handler.postDelayed(updateRunnable, updateInterval);
     }
 
     private long getDirSize(File dir) {
@@ -108,5 +145,38 @@ public class DeviceFragment extends Fragment {
                 return "Offline";
             }
         }
+    }
+
+    private String getRAMInfo(Context context) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+
+        // Get app memory usage
+        int pid = android.os.Process.myPid();
+        android.os.Debug.MemoryInfo[] memoryInfoArray = activityManager.getProcessMemoryInfo(new int[]{pid});
+        int appRamKb = memoryInfoArray[0].getTotalPss();
+        long appRamBytes = appRamKb * 1024L;
+
+        // Get total RAM
+        ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+        activityManager.getMemoryInfo(memoryInfo);
+        long totalRamBytes = memoryInfo.totalMem;
+
+        return formatSize(appRamBytes) + " / " + formatSize(totalRamBytes);
+    }
+
+    private int getRAMUsagePercent(Context context) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+
+        int pid = android.os.Process.myPid();
+        android.os.Debug.MemoryInfo[] memoryInfoArray = activityManager.getProcessMemoryInfo(new int[]{pid});
+        int appRamKb = memoryInfoArray[0].getTotalPss();
+        long appRamBytes = appRamKb * 1024L;
+
+        ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+        activityManager.getMemoryInfo(memoryInfo);
+        long totalRamBytes = memoryInfo.totalMem;
+
+        if (totalRamBytes == 0) return 0;
+        return (int) ((appRamBytes * 100) / totalRamBytes);
     }
 }

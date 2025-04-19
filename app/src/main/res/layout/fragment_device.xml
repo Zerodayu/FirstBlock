@@ -55,7 +55,7 @@
             android:textStyle="italic"
             android:textSize="14sp"
             android:textColor="@color/white"
-            android:text="Realme" />
+            android:text="*Device Name" />
 
         <TextView
             android:id="@+id/Proc"
@@ -75,7 +75,7 @@
             android:textStyle="italic"
             android:textSize="14sp"
             android:textColor="@color/white"
-            android:text="Realme" />
+            android:text="*Processor" />
 
         <TextView
             android:id="@+id/Storage"
@@ -95,7 +95,7 @@
             android:textStyle="italic"
             android:textSize="14sp"
             android:textColor="@color/white"
-            android:text="*how much space is used" />
+            android:text="*Storage" />
 
         <TextView
             android:id="@+id/Network"
@@ -115,7 +115,7 @@
             android:textStyle="italic"
             android:textSize="14sp"
             android:textColor="@color/white"
-            android:text="*internet status (connected/offline)" />
+            android:text="*Internet Status" />
 
         <TextView
             android:id="@+id/Ram"
@@ -129,14 +129,24 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/scrRam"
+            android:id="@+id/srcRam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
-            android:text="*how much ram is used (Editable)"
+            android:text="*Ram Info"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="italic" />
+
+        <ProgressBar
+            android:id="@+id/RamProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:max="100"
+            android:progress="0"
+            android:progressTint="@color/white"/>
 
     </LinearLayout>
 

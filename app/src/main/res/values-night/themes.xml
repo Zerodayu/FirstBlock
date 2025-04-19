@@ -7,6 +7,4 @@
         <item name="colorSecondary">@color/black</item>
     </style>
 
-    <style name="Theme.FirstBlock" parent="Base.Theme.FirstBlock" />
-
 </resources>
