@@ -1,64 +1,77 @@
 package com.example.firstblock;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SelectTypeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 public class SelectTypeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private RadioGroup editionRadioGroup;
+    private Button nextBtn, backBtn;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public SelectTypeFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SelectTypeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SelectTypeFragment newInstance(String param1, String param2) {
-        SelectTypeFragment fragment = new SelectTypeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_select_type, container, false);
+        View view = inflater.inflate(R.layout.fragment_select_type, container, false);
+
+        // Initialize views
+        editionRadioGroup = view.findViewById(R.id.editionRadioGroup);
+        nextBtn = view.findViewById(R.id.NextBtn);
+        backBtn = view.findViewById(R.id.BackBtn);
+
+        // Next button logic
+        nextBtn.setOnClickListener(v -> {
+            int selectedId = editionRadioGroup.getCheckedRadioButtonId();
+
+            if (selectedId == -1) {
+                Toast.makeText(getContext(), "Please select an edition", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Determine the selected edition type
+            String selectedEdition = "";
+            if (selectedId == R.id.JavaEditionBtn) {
+                selectedEdition = "Java"; // "Java" edition selected
+            } else if (selectedId == R.id.BedrockEditionBtn) {
+                selectedEdition = "Bedrock"; // "Bedrock" edition selected
+            }
+
+            // Pass the selected edition type to the next fragment
+            Fragment nextFragment;
+            if ("Java".equals(selectedEdition)) {
+                nextFragment = new SelectJavaVersionFragment(); // Java fragment
+            } else {
+                nextFragment = new SelectBedrockVersionFragment(); // Bedrock fragment
+            }
+
+            // Create a bundle to pass the selected edition type
+            Bundle bundle = new Bundle();
+            bundle.putString("selected_edition", selectedEdition); // Add the edition type to the bundle
+            nextFragment.setArguments(bundle); // Set the bundle in the next fragment
+
+            // Start the next fragment
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.framelayout, nextFragment); // container ID from activity_main.xml
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
+
+        // Back button logic
+        backBtn.setOnClickListener(v -> {
+            requireActivity().onBackPressed();
+        });
+
+        return view;
     }
 }
