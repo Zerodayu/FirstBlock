@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".SettingFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -13,7 +12,7 @@
         android:layout_gravity="center|top"
         android:paddingTop="10dp"
         android:text="Settings"
-        android:textColor="@color/white"
+        android:textColor="?attr/colorOnBackground"
         android:textSize="26dp"
         android:textStyle="bold" />
 

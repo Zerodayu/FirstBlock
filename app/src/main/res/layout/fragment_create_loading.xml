@@ -5,7 +5,6 @@
     android:id="@+id/frameLayout11"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".CreateLoadingFragment">
 
     <LinearLayout
@@ -24,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Server Loading"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="26dp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -46,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Creating the Server"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -56,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Please wait"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="14sp" />
 
         <LinearLayout
@@ -70,7 +69,7 @@
                 android:id="@+id/NameView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="bold"
                 android:text="Server Name" />
@@ -80,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="bold"
                 android:text="Type" />
@@ -90,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="bold"
                 android:text="Version" />
@@ -100,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="bold"
                 android:text="Loader" />
@@ -114,14 +113,13 @@
                 android:layout_marginTop="20dp"
                 android:max="100"
                 android:progress="0"
-                android:progressTint="@color/white" />
+                android:progressTint="?attr/colorOnBackground" />
 
             <TextView
                 android:id="@+id/ProcessView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="italic"
                 android:text="*show the process" />
@@ -145,8 +143,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/black"
+            android:backgroundTint="?attr/colorOnBackground"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="Finish" />

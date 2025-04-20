@@ -5,7 +5,6 @@
     android:id="@+id/frameLayout10"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".ConfirmCreateFragment">
 
     <LinearLayout
@@ -24,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Create Server"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="26dp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -46,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Confirm Server Creation"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -61,7 +60,7 @@
                 android:id="@+id/Nametxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="bold"
                 android:text="Server Name" />
@@ -74,7 +73,7 @@
                 android:textAlignment="center"
                 android:ems="10"
                 android:inputType="text"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:hint="Server Name"
                 android:textColorHint="@color/gray" />
 
@@ -83,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="bold"
                 android:text="Type" />
@@ -91,7 +90,7 @@
                 android:id="@+id/TypeView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="italic"
                 android:text="*type" />
@@ -101,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="bold"
                 android:text="Version" />
@@ -109,7 +108,7 @@
                 android:id="@+id/VersionView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="italic"
                 android:text="*version" />
@@ -119,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="bold"
                 android:text="Loader" />
@@ -127,7 +126,7 @@
                 android:id="@+id/LoaderView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="italic"
                 android:text="*loader" />
@@ -162,8 +161,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/black"
+            android:backgroundTint="?attr/colorOnBackground"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="Create" />

@@ -5,7 +5,6 @@
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".SelectTypeFragment" >
 
     <LinearLayout
@@ -23,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="26dp"
             android:textStyle="bold"
             android:text="Create Server" />
@@ -45,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="Choose Minecraft Edition" />
@@ -60,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:text="Java Minecraft" />
 
             <RadioButton
@@ -68,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnBackground"
                 android:text="Bedrock Minecraft" />
         </RadioGroup>
     </LinearLayout>
@@ -101,8 +100,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/black"
+            android:backgroundTint="?attr/colorOnBackground"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="Next" />

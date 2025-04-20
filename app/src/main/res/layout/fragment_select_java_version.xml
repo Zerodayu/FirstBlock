@@ -5,7 +5,6 @@
     android:id="@+id/frameLayout6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".SelectJavaLoaderFragment">
 
     <LinearLayout
@@ -24,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Create Server"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="26dp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -46,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Choose Minecraft Java Version"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -64,7 +63,7 @@
                     android:id="@+id/JavaMc1.20.5Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
                     android:text="1.20.5" />
 
@@ -72,7 +71,7 @@
                     android:id="@+id/JavaMc1.20.4Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
                     android:text="1.20.4" />
 
@@ -80,7 +79,7 @@
                     android:id="@+id/JavaMc1.20.3Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
                     android:text="1.20.3" />
 
@@ -88,7 +87,7 @@
                     android:id="@+id/JavaMc1.20.2Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
                     android:text="1.20.2" />
 
@@ -96,7 +95,7 @@
                     android:id="@+id/JavaMc1.20.1Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
                     android:text="1.20.1" />
 
@@ -104,73 +103,74 @@
                     android:id="@+id/JavaMc1.20Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
-                    android:textColor="@color/white"
                     android:text="1.20" />
 
                 <RadioButton
                     android:id="@+id/JavaMc1.19.4Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
-                    android:textColor="@color/white"
                     android:text="1.19.4" />
 
                 <RadioButton
                     android:id="@+id/JavaMc1.19.3Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
-                    android:textColor="@color/white"
                     android:text="1.19.3" />
 
                 <RadioButton
                     android:id="@+id/JavaMc1.19.2Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
-                    android:textColor="@color/white"
                     android:text="1.19.2" />
 
                 <RadioButton
                     android:id="@+id/JavaMc1.19.1Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
-                    android:textColor="@color/white"
                     android:text="1.19.1" />
 
                 <RadioButton
                     android:id="@+id/JavaMc1.19Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
-                    android:textColor="@color/white"
                     android:text="1.19" />
 
                 <RadioButton
                     android:id="@+id/JavaMc1.18.2Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
-                    android:textColor="@color/white"
                     android:text="1.18.2" />
 
                 <RadioButton
                     android:id="@+id/JavaMc1.18.1Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
-                    android:textColor="@color/white"
                     android:text="1.18.1" />
 
                 <RadioButton
                     android:id="@+id/JavaMc1.18Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
-                    android:textColor="@color/white"
                     android:text="1.18" />
+
             </RadioGroup>
 
         </ScrollView>
@@ -204,8 +204,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/black"
+            android:backgroundTint="?attr/colorOnBackground"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="Next" />

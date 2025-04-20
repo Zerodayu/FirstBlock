@@ -5,7 +5,6 @@
     android:id="@+id/frameLayout8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".SelectJavaVersionFragment">
 
     <LinearLayout
@@ -24,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Create Server"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="26dp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -46,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Choose Minecraft Java Loader"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -64,7 +63,7 @@
                     android:id="@+id/FabricLoaderBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
                     android:text="Fabric" />
 
@@ -72,7 +71,7 @@
                     android:id="@+id/QuiltLoaderBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
                     android:text="Quilt" />
 
@@ -80,7 +79,7 @@
                     android:id="@+id/ForgeLoaderBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
                     android:text="Forge" />
 
@@ -88,7 +87,7 @@
                     android:id="@+id/NeoForgeLoaderBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_gravity="center"
                     android:text="NeoForge" />
 
@@ -126,8 +125,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/black"
+            android:backgroundTint="?attr/colorOnBackground"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="Next" />

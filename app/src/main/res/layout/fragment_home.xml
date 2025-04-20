@@ -5,7 +5,6 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".HomeFragment">
 
     <LinearLayout
@@ -24,7 +23,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="26sp"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textStyle="bold"
             android:text="Home" />
     </LinearLayout>
@@ -44,7 +43,7 @@
             android:id="@+id/onlineServer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:text="Online Server: " />
     </LinearLayout>
 
@@ -52,8 +51,8 @@
         android:id="@+id/CreateBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"
+        android:backgroundTint="?attr/colorOnBackground"
+        android:textColor="?attr/colorOnPrimary"
         android:textStyle="bold"
         android:textSize="18sp"
         android:text="Create"

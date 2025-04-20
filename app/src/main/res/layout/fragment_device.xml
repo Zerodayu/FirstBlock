@@ -5,7 +5,6 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".DeviceFragment">
 
     <FrameLayout
@@ -24,7 +23,7 @@
             android:textSize="26sp"
             android:layout_gravity="center"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:text="Device" />
     </FrameLayout>
 
@@ -44,7 +43,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:text="Device Name:" />
 
         <TextView
@@ -54,7 +53,7 @@
             android:layout_gravity="center"
             android:textStyle="italic"
             android:textSize="14sp"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:text="*Device Name" />
 
         <TextView
@@ -64,7 +63,7 @@
             android:paddingTop="20dp"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:text="Processor:" />
 
         <TextView
@@ -74,7 +73,7 @@
             android:layout_gravity="center"
             android:textStyle="italic"
             android:textSize="14sp"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:text="*Processor" />
 
         <TextView
@@ -84,7 +83,7 @@
             android:paddingTop="20dp"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:text="Storage:" />
 
         <TextView
@@ -94,7 +93,7 @@
             android:layout_gravity="center"
             android:textStyle="italic"
             android:textSize="14sp"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:text="*Storage" />
 
         <TextView
@@ -104,7 +103,7 @@
             android:paddingTop="20dp"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:text="Network Status:" />
 
         <TextView
@@ -114,7 +113,7 @@
             android:layout_gravity="center"
             android:textStyle="italic"
             android:textSize="14sp"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:text="*Internet Status" />
 
         <TextView
@@ -124,7 +123,7 @@
             android:layout_gravity="top"
             android:paddingTop="20dp"
             android:text="Ram:"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -134,7 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
             android:text="*Ram Info"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="14sp"
             android:textStyle="italic" />
 
@@ -146,7 +145,7 @@
             android:layout_gravity="center"
             android:max="100"
             android:progress="0"
-            android:progressTint="@color/white"/>
+            android:progressTint="?attr/colorOnBackground"/>
 
     </LinearLayout>
 
