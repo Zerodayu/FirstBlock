@@ -143,7 +143,7 @@ public class HomeFragment extends Fragment {
                                 Toast.makeText(getContext(), "Server Running", Toast.LENGTH_SHORT).show();
 
                                 // Update the onlineServerView TextView
-                                onlineServerView.setText("Online Server: " + server.getName() + " " + server.getVersion() + " " + server.getLoader());
+                                onlineServerView.setText("Online Server: [" + server.getName() + " " + server.getVersion() + " " + server.getLoader() + "]");
 
                                 ctrlBtn.setEnabled(true);
                             }
