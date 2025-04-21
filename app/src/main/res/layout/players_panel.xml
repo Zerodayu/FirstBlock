@@ -107,8 +107,11 @@
                 android:id="@+id/PlayerDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:background="@drawable/btn_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
 
                 <CheckBox
                     android:id="@+id/SelectCheckBox"
@@ -120,17 +123,17 @@
                     android:id="@+id/imageView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/profile_icon"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:src="@drawable/profile_icon" />
 
                 <TextView
                     android:id="@+id/PlayerName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="?attr/colorOnBackground"
-                    android:textSize="16sp"
                     android:paddingStart="5dp"
-                    android:text="PlayerName" />
+                    android:text="PlayerName"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="16sp" />
             </LinearLayout>
 
         </LinearLayout>

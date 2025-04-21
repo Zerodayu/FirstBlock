@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="15dp"
-        android:text="Mods ▸ FileFolder"
+        android:text="Files ▸ FileFolder"
         android:textColor="?attr/colorOnBackground"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,10 @@
             <LinearLayout
                 android:id="@+id/ModDetails"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
+                android:background="@drawable/btn_selector"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
 
@@ -85,12 +88,40 @@
                     android:src="@drawable/folder_icon" />
 
                 <TextView
-                    android:id="@+id/ModName"
+                    android:id="@+id/FolderName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:paddingStart="5dp"
-                    android:text="FileFolder"
+                    android:text="FolderType"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ModDetails1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/btn_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/file_icon" />
+
+                <TextView
+                    android:id="@+id/FileName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingStart="5dp"
+                    android:text="FileType"
                     android:textColor="?attr/colorOnBackground"
                     android:textSize="16sp" />
             </LinearLayout>
