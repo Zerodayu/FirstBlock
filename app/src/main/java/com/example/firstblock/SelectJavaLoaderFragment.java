@@ -39,8 +39,8 @@ public class SelectJavaLoaderFragment extends Fragment {
             selectedVersion = bundle.getString("selected_version", "N/A");  // Set selectedVersion
             selectedEdition = bundle.getString("selected_edition", "N/A");  // Set selectedEdition
 
-            // Show the selected version and edition (optional, for debugging)
-            Toast.makeText(getContext(), "Selected Java Version: " + selectedVersion + ", Edition: " + selectedEdition, Toast.LENGTH_SHORT).show();
+            // Show the selected version and edition
+            Toast.makeText(getContext(), "Minecraft: " + selectedVersion + " " + selectedEdition, Toast.LENGTH_SHORT).show();
         }
 
         // Handle the "Next" button click

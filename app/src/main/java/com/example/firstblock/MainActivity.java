@@ -1,6 +1,7 @@
 package com.example.firstblock;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -26,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNavView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
-            // Replace fragment based on selected item
             if (itemId == R.id.home) {
                 replaceFragment(new HomeFragment());
             } else if (itemId == R.id.settings) {
@@ -38,15 +38,47 @@ public class MainActivity extends AppCompatActivity {
             } else if (itemId == R.id.info) {
                 replaceFragment(new InfoFragment());
             }
-            return true; // Return true to confirm item selection handled
+            return true;
+        });
+
+        // Listen for fragment changes to auto-hide/show bottom nav
+        getSupportFragmentManager().addOnBackStackChangedListener(() -> {
+            Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.framelayout);
+            updateBottomNavVisibility(currentFragment);
         });
     }
 
-    // Method to replace fragment in FrameLayout
+    // Method to replace fragment
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framelayout, fragment); // Replace content of FrameLayout
-        fragmentTransaction.commit(); // Commit the transaction
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.framelayout, fragment);
+
+        // Only add to back stack if it's not a bottom nav fragment
+        if (!(fragment instanceof HomeFragment ||
+                fragment instanceof SettingFragment ||
+                fragment instanceof ConsoleFragment ||
+                fragment instanceof DeviceFragment ||
+                fragment instanceof InfoFragment)) {
+            transaction.addToBackStack(null);
+        }
+
+        transaction.commit();
+
+        // Immediately update nav visibility
+        updateBottomNavVisibility(fragment);
+    }
+
+    // Show/hide bottom navigation based on current fragment
+    private void updateBottomNavVisibility(Fragment fragment) {
+        if (fragment instanceof HomeFragment ||
+                fragment instanceof SettingFragment ||
+                fragment instanceof ConsoleFragment ||
+                fragment instanceof DeviceFragment ||
+                fragment instanceof InfoFragment) {
+            binding.bottomNavView.setVisibility(View.VISIBLE);
+        } else {
+            binding.bottomNavView.setVisibility(View.GONE);
+        }
     }
 }

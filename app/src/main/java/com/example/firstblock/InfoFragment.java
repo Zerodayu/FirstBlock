@@ -17,25 +17,21 @@ public class InfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_info, container, false);
 
-        // Find the themeInfo TextView and set a click listener
+        // Use TextView instead of Button now
         TextView themeInfo = view.findViewById(R.id.themeInfo);
         themeInfo.setOnClickListener(v -> {
             Toast.makeText(requireContext(), "Using System Default", Toast.LENGTH_SHORT).show();
         });
 
-        // Find the version TextView and set a click listener to show the app version
-        TextView versionTextView = view.findViewById(R.id.versionView); // Assuming you have a TextView with this ID
-        versionTextView.setOnClickListener(v -> {
-            // Get app version and show it in a Toast
+        TextView versionView = view.findViewById(R.id.versionView);
+        versionView.setOnClickListener(v -> {
             String version = getAppVersion();
             Toast.makeText(requireContext(), "Version " + version, Toast.LENGTH_SHORT).show();
         });
 
-        // Find the StorageDataView TextView and show the app file location
-        TextView storageDataView = view.findViewById(R.id.StorageDataView); // Assuming you have a TextView with this ID
+        TextView storageDataView = view.findViewById(R.id.StorageDataView);
         storageDataView.setOnClickListener(v -> {
             String appLocation = getAppFileLocation();
             Toast.makeText(requireContext(), "App File Location: " + appLocation, Toast.LENGTH_LONG).show();
@@ -44,27 +40,19 @@ public class InfoFragment extends Fragment {
         return view;
     }
 
-    // Method to get the app version
     private String getAppVersion() {
         try {
-            // Get the current app's version
             PackageInfo packageInfo = requireContext().getPackageManager().getPackageInfo(requireContext().getPackageName(), 0);
             return packageInfo.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-            return "N/A"; // Return "N/A" in case version retrieval fails
+            return "N/A";
         }
     }
 
-    // Method to get the app file location
     private String getAppFileLocation() {
-        // Get the path to the app's data directory
         String appDataPath = requireContext().getFilesDir().getAbsolutePath();
-
-        // Optionally, you can also show the external storage path:
         String externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
-
-        // Returning the app data directory path
         return "Internal Storage: " + appDataPath + "\nExternal Storage: " + externalStorage;
     }
 }

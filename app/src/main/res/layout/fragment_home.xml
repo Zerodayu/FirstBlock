@@ -11,7 +11,7 @@
         android:id="@+id/TopNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="15dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,9 +19,9 @@
 
         <TextView
             android:id="@+id/tabTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:textSize="26sp"
             android:textColor="?attr/colorOnBackground"
             android:textStyle="bold"
@@ -29,15 +29,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/BodyPanel"
+        android:id="@+id/StatusView"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/TopNav"
-        app:layout_constraintBottom_toTopOf="@id/CreateBtn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" >
+        app:layout_constraintTop_toBottomOf="@+id/TopNav">
 
         <ProgressBar
             android:id="@+id/serverStartBar"
@@ -49,12 +48,40 @@
             android:progress="0"
             android:progressTint="?attr/colorOnBackground" />
 
-        <TextView
-            android:id="@+id/onlineServerView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/statusLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="?attr/colorOnBackground"
-            android:text="Online Server: " />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnBackground"
+                android:text="Online Server:" />
+
+            <TextView
+                android:id="@+id/onlineServerView"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Online Server"
+                android:textColor="@color/green" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/BodyPanel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/CreateBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StatusView">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -62,9 +89,9 @@
 
             <LinearLayout
                 android:id="@+id/ServerList"
-                android:layout_gravity="top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="top"
                 android:orientation="vertical" />
         </ScrollView>
 

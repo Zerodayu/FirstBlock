@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.FragmentManager;
+import androidx.activity.OnBackPressedCallback;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -78,37 +79,35 @@ public class CreateLoadingFragment extends Fragment {
 
         // Finish button logic
         finishBtn.setOnClickListener(v -> {
-            if (isFinished && isAdded()) {
-                if (bundle != null) {
-                    String serverName = bundle.getString("server_name", "Unknown");
-                    String edition = bundle.getString("selected_edition", "N/A");
-                    String version = bundle.getString("selected_version", "N/A");
-                    String loader = bundle.getString("selected_loader", "N/A");
+            if (isAdded()) {
+                if (isFinished) {
+                    // Save server and go to Home
+                    if (bundle != null) {
+                        String serverName = bundle.getString("server_name", "Unknown");
+                        String edition = bundle.getString("selected_edition", "N/A");
+                        String version = bundle.getString("selected_version", "N/A");
+                        String loader = bundle.getString("selected_loader", "N/A");
 
-                    // Save data in SharedPreferences
-                    SharedPreferences prefs = requireActivity().getSharedPreferences("ServerPrefs", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    Gson gson = new Gson();
+                        SharedPreferences prefs = requireActivity().getSharedPreferences("ServerPrefs", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        Gson gson = new Gson();
 
-                    // Load existing server list
-                    String json = prefs.getString("server_list", "[]");
-                    Type type = new TypeToken<ArrayList<ServerData>>(){}.getType();
-                    ArrayList<ServerData> serverList = gson.fromJson(json, type);
+                        String json = prefs.getString("server_list", "[]");
+                        Type type = new TypeToken<ArrayList<ServerData>>(){}.getType();
+                        ArrayList<ServerData> serverList = gson.fromJson(json, type);
 
-                    // Add new server to the list
-                    ServerData newServer = new ServerData(serverName, edition, version, loader);
-                    serverList.add(newServer);
+                        ServerData newServer = new ServerData(serverName, edition, version, loader);
+                        serverList.add(newServer);
 
-                    // Save updated server list
-                    String updatedJson = gson.toJson(serverList);
-                    editor.putString("server_list", updatedJson);
-                    editor.apply();
+                        String updatedJson = gson.toJson(serverList);
+                        editor.putString("server_list", updatedJson);
+                        editor.apply();
 
-                    // Show confirmation toast
-                    Toast.makeText(getContext(), "Server Created: " + serverName, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Server Created: " + serverName, Toast.LENGTH_SHORT).show();
+                    }
                 }
 
-                // Navigate to HomeFragment
+                // In both success and failure cases, go to Home
                 requireActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.framelayout, new HomeFragment());
@@ -117,6 +116,18 @@ public class CreateLoadingFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Disable back button while this fragment is active
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Do nothing (disable back navigation)
+            }
+        });
     }
 
     // AsyncTask to download server files
@@ -156,13 +167,15 @@ public class CreateLoadingFragment extends Fragment {
                 finishBtn.setText("Finish");
                 processView.setText("Finished");
             } else {
+                isFinished = false;
+                finishBtn.setEnabled(true);
+                finishBtn.setText("Home");
                 processView.setText("Download failed!");
             }
         }
 
         // Method to build download URL based on user selection
         private String buildDownloadUrl(String edition, String version, String loader) {
-            // Construct the URL dynamically based on selected edition, version, and loader
             String baseUrl = "https://example.com/minecraft/"; // Update with actual base URL for Minecraft servers
             if ("Java".equals(edition)) {
                 if ("Forge".equals(loader)) {

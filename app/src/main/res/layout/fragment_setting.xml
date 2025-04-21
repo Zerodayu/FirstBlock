@@ -1,19 +1,179 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout12"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SettingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/TopNav"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center|top"
-        android:paddingTop="10dp"
-        android:text="Settings"
-        android:textColor="?attr/colorOnBackground"
-        android:textSize="26dp"
-        android:textStyle="bold" />
+        android:padding="15dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tabTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:text="Settings" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/CurrentServerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="@drawable/btn_selector"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TopNav">
+
+        <TextView
+            android:id="@+id/hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnBackground"
+            android:text="(Change) Server:" />
+
+        <TextView
+            android:id="@+id/currentServerTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="?attr/colorOnBackground"
+            android:text="No Server Selected" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/BodyPanel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CurrentServerView">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/InfoBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
+                    android:background="@drawable/btn_selector"
+                    android:clickable="true"
+                    android:padding="15dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Info"  />
+
+                <TextView
+                    android:id="@+id/SetupBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
+                    android:background="@drawable/btn_selector"
+                    android:clickable="true"
+                    android:padding="15dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Setup"  />
+
+                <TextView
+                    android:id="@+id/PlayersBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
+                    android:background="@drawable/btn_selector"
+                    android:clickable="true"
+                    android:padding="15dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Players"  />
+
+                <TextView
+                    android:id="@+id/ModsBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
+                    android:background="@drawable/btn_selector"
+                    android:clickable="true"
+                    android:padding="15dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Mods"  />
+
+                <TextView
+                    android:id="@+id/FilesBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
+                    android:background="@drawable/btn_selector"
+                    android:clickable="true"
+                    android:padding="15dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Files" />
+
+                <TextView
+                    android:id="@+id/BackupBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
+                    android:background="@drawable/btn_selector"
+                    android:clickable="true"
+                    android:padding="15dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Backup" />
+
+                <TextView
+                    android:id="@+id/LogBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnBackground"
+                    android:background="@drawable/btn_selector"
+                    android:clickable="true"
+                    android:padding="15dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Logs" />
+
+                <TextView
+                    android:id="@+id/DelBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red"
+                    android:background="@drawable/btn_selector"
+                    android:clickable="true"
+                    android:padding="15dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Delete" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
