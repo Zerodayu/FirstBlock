@@ -32,7 +32,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp"
         android:background="@drawable/btn_selector"
         android:clickable="true"
         android:focusable="true"
@@ -40,21 +39,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TopNav">
 
-        <TextView
-            android:id="@+id/hint"
+        <ImageButton
+            android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="?attr/colorOnBackground"
-            android:text="(Change) Server:" />
+            android:background="@android:color/transparent"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/select_icon" />
 
         <TextView
             android:id="@+id/currentServerTxt"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
             android:textColor="?attr/colorOnBackground"
             android:text="No Server Selected" />
+
     </LinearLayout>
 
     <LinearLayout

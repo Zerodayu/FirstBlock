@@ -23,7 +23,6 @@ public class ModsPanel extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.mods_panel, container, false);
 
-        // Find the ImageButton (BackBtn) in the layout
         ImageButton backBtn = view.findViewById(R.id.BackBtn);
         addBtn = view.findViewById(R.id.AddBtn);
         delBtn = view.findViewById(R.id.DelBtn);
