@@ -157,9 +157,9 @@ public class HomeFragment extends Fragment {
 
         // Navigate to create flow
         createBtn.setOnClickListener(v -> {
-            Fragment selectTypeFragment = new SelectTypeFragment();
+            Fragment confirmCreateFragment = new ConfirmCreateFragment();
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.framelayout, selectTypeFragment);
+            transaction.replace(R.id.framelayout, confirmCreateFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         });

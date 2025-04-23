@@ -94,7 +94,7 @@
                 android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="italic"
-                android:text="*type" />
+                android:text="N/A" />
 
             <TextView
                 android:id="@+id/VerTxt"
@@ -112,7 +112,7 @@
                 android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="italic"
-                android:text="*version" />
+                android:text="N/A" />
 
             <TextView
                 android:id="@+id/LoaderTxt"
@@ -130,7 +130,28 @@
                 android:textColor="?attr/colorOnBackground"
                 android:layout_gravity="center"
                 android:textStyle="italic"
-                android:text="*loader" />
+                android:text="N/A" />
+
+            <Button
+                android:id="@+id/ImportBtn"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:backgroundTint="?attr/colorOnBackground"
+                android:textColor="?attr/colorOnPrimary"
+                android:text="Import File" />
+
+            <TextView
+                android:id="@+id/FilenameView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnBackground"
+                android:layout_gravity="center"
+                android:textStyle="italic"
+                android:text="no file selected" />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -156,7 +177,7 @@
             android:textColor="?attr/colorOnBackground"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Back" />
+            android:text="Cancel" />
 
         <Button
             android:id="@+id/NextBtn"
