@@ -1,0 +1,135 @@
+{
+
+  "1.21.5": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.21.4": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.21.3": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.21.1": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.21": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.20.6": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.20.4": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.20.3": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.20.2": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.20.1": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.20": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.19.4": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.19.3": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.19.2": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.19.1": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.19": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.18.2": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.18.1": {
+    "Forge": "https://your-site.com/forge/1.20.1-47.4.0-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.20.1-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.20.1-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.20.1-installer.jar"
+  },
+
+  "1.18": {
+    "Forge": "https://your-site.com/forge/1.18-38.0.17-installer.jar",
+    "Fabric": "https://your-site.com/fabric/1.18-server.jar",
+    "Quilt": "https://your-site.com/quilt/1.18-server.jar",
+    "NeoForge": "https://your-site.com/neoforge/1.18-installer.jar"
+  }
+}

@@ -1,6 +1,7 @@
 package com.example.firstblock;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +14,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.FragmentManager;
 
+import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
+
 public class SelectJavaLoaderFragment extends Fragment {
 
     private RadioGroup loaderRadioGroup;
     private Button nextBtn;
-    private Button backBtn;  // Declare back button
+    private Button backBtn;
     private String selectedLoader;
-    private String selectedVersion;  // Declare as instance variable
-    private String selectedEdition;  // Declare as instance variable
+    private String selectedVersion;
+    private String selectedEdition;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,7 +36,7 @@ public class SelectJavaLoaderFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_select_java_loader, container, false);
 
         // Initialize views
-        loaderRadioGroup = view.findViewById(R.id.JavaVersionGroup);
+        loaderRadioGroup = view.findViewById(R.id.JavaLoaderGroup);
         nextBtn = view.findViewById(R.id.NextBtn);
         backBtn = view.findViewById(R.id.BackBtn);  // Initialize back button
 
@@ -42,6 +49,9 @@ public class SelectJavaLoaderFragment extends Fragment {
             // Show the selected version and edition
             Toast.makeText(getContext(), "Minecraft: " + selectedVersion + " " + selectedEdition, Toast.LENGTH_SHORT).show();
         }
+
+        // Load the Java loaders for the selected version from the JSON file
+        loadJavaLoaders(inflater);
 
         // Handle the "Next" button click
         nextBtn.setOnClickListener(v -> {
@@ -86,5 +96,44 @@ public class SelectJavaLoaderFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void loadJavaLoaders(LayoutInflater inflater) {
+        try {
+            InputStream is = getContext().getAssets().open("java_server_links.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+
+            String json = new String(buffer, StandardCharsets.UTF_8);
+            JSONObject jsonObject = new JSONObject(json);
+
+            // Get the loaders for the selected version
+            JSONObject versionData = jsonObject.optJSONObject(selectedVersion);
+            if (versionData != null) {
+                Iterator<String> keys = versionData.keys();
+                while (keys.hasNext()) {
+                    String loader = keys.next();
+
+                    // Log the loader to confirm data loading
+                    Log.d("Loaders", "Found loader: " + loader);
+
+                    // Create a RadioButton for each loader
+                    RadioButton newRadioButton = (RadioButton) inflater.inflate(R.layout.item_radio_button, loaderRadioGroup, false);
+                    newRadioButton.setText(loader);
+                    newRadioButton.setId(View.generateViewId());
+
+                    // Add the RadioButton to the RadioGroup
+                    loaderRadioGroup.addView(newRadioButton);
+                }
+            } else {
+                Toast.makeText(getContext(), "No loaders available for this version.", Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "Failed to load Java loaders.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

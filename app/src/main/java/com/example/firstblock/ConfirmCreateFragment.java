@@ -1,5 +1,7 @@
 package com.example.firstblock;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,12 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class ConfirmCreateFragment extends Fragment {
 
@@ -53,8 +61,27 @@ public class ConfirmCreateFragment extends Fragment {
             // Get the server name input (EditText)
             String serverName = serverNameInput.getText().toString().trim();
 
-            // Check if the server name is empty
-            if (serverName.isEmpty()) {
+            // Retrieve the list of existing servers from SharedPreferences
+            SharedPreferences prefs = requireActivity().getSharedPreferences("ServerPrefs", Context.MODE_PRIVATE);
+            String json = prefs.getString("server_list", "[]");
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<ServerData>>() {}.getType();
+            ArrayList<ServerData> serverList = gson.fromJson(json, type);
+
+            // Check if the server name already exists in the server list
+            boolean serverNameExists = false;
+            for (ServerData server : serverList) {
+                if (server.getName().equals(serverName)) {
+                    serverNameExists = true;
+                    break;
+                }
+            }
+
+            // Check if the server name is valid
+            if (serverNameExists) {
+                // Show a toast if the server name already exists
+                Toast.makeText(getContext(), "Server name already exists", Toast.LENGTH_SHORT).show();
+            } else if (serverName.isEmpty()) {
                 // Show a toast message if the input is empty
                 Toast.makeText(getContext(), "Please enter a server name", Toast.LENGTH_SHORT).show();
             } else if (serverName.length() > 10) {

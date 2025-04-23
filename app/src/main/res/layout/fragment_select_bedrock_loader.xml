@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout9"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="?attr/colorOnPrimary"
     tools:context=".SelectBedrockLoaderFragment">
 
     <LinearLayout
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
+        android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Create Server"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="26dp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Choose Minecraft Bedrock Loader"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -56,25 +56,9 @@
             android:layout_height="match_parent">
 
             <RadioGroup
-                android:id="@+id/BedrockVersionGroup"
+                android:id="@+id/BedrockLoaderGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/BedrockLoaderBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_gravity="center"
-                    android:text="Bedrock" />
-
-                <RadioButton
-                    android:id="@+id/PocketmineLoaderBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_gravity="center"
-                    android:text="Pocketmine" />
 
             </RadioGroup>
 
@@ -98,8 +82,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/gray"
-            android:textColor="@color/white"
+            android:layout_margin="5dp"
+            android:backgroundTint="?attr/colorSurfaceDim"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="Back" />
@@ -109,8 +94,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/black"
+            android:layout_margin="5dp"
+            android:backgroundTint="?attr/colorOnBackground"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="Next" />

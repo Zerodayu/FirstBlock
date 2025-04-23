@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +24,10 @@ import androidx.activity.OnBackPressedCallback;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import java.lang.reflect.Type;
 
 import java.io.File;
+import java.lang.reflect.Type;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,6 +45,7 @@ public class CreateLoadingFragment extends Fragment {
     private final Handler handler = new Handler(Looper.getMainLooper());
 
     private Bundle bundle;
+    private static final String TAG = "CreateLoadingFragment";
 
     @Nullable
     @Override
@@ -50,7 +53,6 @@ public class CreateLoadingFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_loading, container, false);
 
-        // Initialize views
         finishBtn = view.findViewById(R.id.FinBtn);
         progressBar = view.findViewById(R.id.progressBar);
         nameView = view.findViewById(R.id.NameView);
@@ -59,11 +61,9 @@ public class CreateLoadingFragment extends Fragment {
         loaderView = view.findViewById(R.id.LoaderView);
         processView = view.findViewById(R.id.ProcessView);
 
-        // Disable the button initially
         finishBtn.setEnabled(false);
         finishBtn.setText("Loading...");
 
-        // Retrieve arguments
         bundle = getArguments();
         if (bundle != null) {
             nameView.setText(bundle.getString("server_name", "Unknown"));
@@ -72,42 +72,38 @@ public class CreateLoadingFragment extends Fragment {
             loaderView.setText(bundle.getString("selected_loader", "N/A"));
         }
 
-        // Start the downloading process
-        new DownloadServerFilesTask().execute(bundle.getString("selected_edition"),
+        new DownloadServerFilesTask().execute(
+                bundle.getString("selected_edition"),
                 bundle.getString("selected_version"),
-                bundle.getString("selected_loader"));
+                bundle.getString("selected_loader")
+        );
 
-        // Finish button logic
         finishBtn.setOnClickListener(v -> {
             if (isAdded()) {
-                if (isFinished) {
-                    // Save server and go to Home
-                    if (bundle != null) {
-                        String serverName = bundle.getString("server_name", "Unknown");
-                        String edition = bundle.getString("selected_edition", "N/A");
-                        String version = bundle.getString("selected_version", "N/A");
-                        String loader = bundle.getString("selected_loader", "N/A");
+                if (isFinished && bundle != null) {
+                    String serverName = bundle.getString("server_name", "Unknown");
+                    String edition = bundle.getString("selected_edition", "N/A");
+                    String version = bundle.getString("selected_version", "N/A");
+                    String loader = bundle.getString("selected_loader", "N/A");
 
-                        SharedPreferences prefs = requireActivity().getSharedPreferences("ServerPrefs", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = prefs.edit();
-                        Gson gson = new Gson();
+                    SharedPreferences prefs = requireActivity().getSharedPreferences("ServerPrefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    Gson gson = new Gson();
 
-                        String json = prefs.getString("server_list", "[]");
-                        Type type = new TypeToken<ArrayList<ServerData>>(){}.getType();
-                        ArrayList<ServerData> serverList = gson.fromJson(json, type);
+                    String json = prefs.getString("server_list", "[]");
+                    Type type = new TypeToken<ArrayList<ServerData>>() {}.getType();
+                    ArrayList<ServerData> serverList = gson.fromJson(json, type);
 
-                        ServerData newServer = new ServerData(serverName, edition, version, loader);
-                        serverList.add(newServer);
+                    ServerData newServer = new ServerData(serverName, edition, version, loader);
+                    serverList.add(newServer);
 
-                        String updatedJson = gson.toJson(serverList);
-                        editor.putString("server_list", updatedJson);
-                        editor.apply();
+                    String updatedJson = gson.toJson(serverList);
+                    editor.putString("server_list", updatedJson);
+                    editor.apply();
 
-                        Toast.makeText(getContext(), "Server Created: " + serverName, Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(getContext(), "Server Created: " + serverName, Toast.LENGTH_SHORT).show();
                 }
 
-                // In both success and failure cases, go to Home
                 requireActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.framelayout, new HomeFragment());
@@ -121,16 +117,14 @@ public class CreateLoadingFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Disable back button while this fragment is active
         requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                // Do nothing (disable back navigation)
+                // Disable back navigation
             }
         });
     }
 
-    // AsyncTask to download server files
     private class DownloadServerFilesTask extends AsyncTask<String, Integer, Boolean> {
 
         @Override
@@ -139,9 +133,19 @@ public class CreateLoadingFragment extends Fragment {
             String version = params[1];
             String loader = params[2];
 
+            String serverName = bundle.getString("server_name", "Unknown");
+
+            // Create a folder named with the server's name
+            File serverFolder = new File(getContext().getFilesDir(), serverName);
+            if (!serverFolder.exists()) {
+                serverFolder.mkdirs(); // Create the folder
+            }
+
             String downloadUrl = buildDownloadUrl(edition, version, loader);
+            Log.d(TAG, "Download URL: " + downloadUrl);
+
             if (downloadUrl != null) {
-                String destinationPath = getContext().getFilesDir() + "/minecraft_server_" + version + ".jar";
+                String destinationPath = new File(serverFolder, "minecraft_server_" + version + ".jar").getPath();
                 return downloadServerFile(downloadUrl, destinationPath);
             }
 
@@ -150,7 +154,6 @@ public class CreateLoadingFragment extends Fragment {
 
         @Override
         protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
             if (isAdded()) {
                 int progress = values[0];
                 progressBar.setProgress(progress);
@@ -160,7 +163,6 @@ public class CreateLoadingFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Boolean result) {
-            super.onPostExecute(result);
             if (result) {
                 isFinished = true;
                 finishBtn.setEnabled(true);
@@ -174,24 +176,32 @@ public class CreateLoadingFragment extends Fragment {
             }
         }
 
-        // Method to build download URL based on user selection
         private String buildDownloadUrl(String edition, String version, String loader) {
-            String baseUrl = "https://example.com/minecraft/"; // Update with actual base URL for Minecraft servers
-            if ("Java".equals(edition)) {
-                if ("Forge".equals(loader)) {
-                    return baseUrl + "forge/" + version + "/forge-" + version + "-universal.jar";
-                } else if ("Fabric".equals(loader)) {
-                    return baseUrl + "fabric/" + version + "/fabric-api-" + version + ".jar";
-                } else {
-                    return baseUrl + "vanilla/" + version + "/server.jar";
+            String fileName = "Java".equalsIgnoreCase(edition) ? "java_server_links.json" : "bedrock_server_links.json";
+            try {
+                InputStream inputStream = getContext().getAssets().open(fileName);
+                int size = inputStream.available();
+                byte[] buffer = new byte[size];
+                inputStream.read(buffer);
+                inputStream.close();
+                String json = new String(buffer, "UTF-8");
+
+                Gson gson = new Gson();
+                Type type = new TypeToken<java.util.Map<String, java.util.Map<String, String>>>() {}.getType();
+                java.util.Map<String, java.util.Map<String, String>> linksMap = gson.fromJson(json, type);
+
+                if (linksMap.containsKey(version)) {
+                    java.util.Map<String, String> loaderMap = linksMap.get(version);
+                    if (loaderMap.containsKey(loader)) {
+                        return loaderMap.get(loader);
+                    }
                 }
-            } else if ("Bedrock".equals(edition)) {
-                return "https://minecraft.net/en-us/download/server/bedrock";
+            } catch (IOException e) {
+                Log.e(TAG, "Error reading JSON file", e);
             }
             return null;
         }
 
-        // Download the server file and update progress
         private boolean downloadServerFile(String urlString, String destinationPath) {
             try {
                 URL url = new URL(urlString);
@@ -202,25 +212,26 @@ public class CreateLoadingFragment extends Fragment {
 
                 int fileLength = connection.getContentLength();
                 InputStream inputStream = connection.getInputStream();
-                FileOutputStream fileOutputStream = new FileOutputStream(destinationPath);
+                FileOutputStream outputStream = new FileOutputStream(destinationPath);
                 byte[] buffer = new byte[1024];
-                int totalDownloaded = 0;
-                int length;
+                int total = 0;
+                int count;
 
-                while ((length = inputStream.read(buffer)) != -1) {
-                    fileOutputStream.write(buffer, 0, length);
-                    totalDownloaded += length;
-                    int progress = (int) ((totalDownloaded * 100L) / fileLength);
-                    publishProgress(progress); // Update progress
+                while ((count = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, count);
+                    total += count;
+                    if (fileLength > 0) {
+                        publishProgress((int) ((total * 100L) / fileLength));
+                    }
                 }
 
-                fileOutputStream.close();
+                outputStream.close();
                 inputStream.close();
                 return true;
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e(TAG, "Download error", e);
+                return false;
             }
-            return false;
         }
     }
 }

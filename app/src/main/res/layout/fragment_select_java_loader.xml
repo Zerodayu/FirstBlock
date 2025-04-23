@@ -55,42 +55,9 @@
             android:layout_height="match_parent">
 
             <RadioGroup
-                android:id="@+id/JavaVersionGroup"
+                android:id="@+id/JavaLoaderGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/FabricLoaderBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/colorOnBackground"
-                    android:layout_gravity="center"
-                    android:text="Fabric" />
-
-                <RadioButton
-                    android:id="@+id/QuiltLoaderBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/colorOnBackground"
-                    android:layout_gravity="center"
-                    android:text="Quilt" />
-
-                <RadioButton
-                    android:id="@+id/ForgeLoaderBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/colorOnBackground"
-                    android:layout_gravity="center"
-                    android:text="Forge" />
-
-                <RadioButton
-                    android:id="@+id/NeoForgeLoaderBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/colorOnBackground"
-                    android:layout_gravity="center"
-                    android:text="NeoForge" />
-
 
             </RadioGroup>
 
